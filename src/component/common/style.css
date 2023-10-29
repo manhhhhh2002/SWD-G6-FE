@@ -1,5 +1,3 @@
-.header {}
-
 .container-header {
     padding: 10px 0px;
     display: flex;
@@ -7,10 +5,12 @@
     align-items: center;
 }
 
+
+
 .link {
     text-decoration: none;
     color: inherit;
-    background-color: #F48319;
+    color: #F48319;
     width: 40px;
     height: 40px;
     border-radius: 20%;
@@ -19,39 +19,42 @@
     justify-content: center;
     font-weight: 300;
     border: 1px solid white;
-    padding:1px 15px;
+    padding: 1px 15px;
 
     &:hover {
         color: #f0a056;
         background-color: #F48319;
         border: 1px solid #f0a056;
-      }
+    }
 }
 
 .links {
     display: flex;
     gap: 10px;
     align-items: center;
-    
+
 }
 
 .logo img {
-    width: 120px;
+    width: 20%;
+    
 }
 
 footer {
-    margin-top: 100px;
-    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
     background-color: #F48319;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 12px;
+    justify-content: space-around;
 
-    
+
 }
 
 footer img {
-        height: 50px;
-    
+    height: 50px;
+
 }

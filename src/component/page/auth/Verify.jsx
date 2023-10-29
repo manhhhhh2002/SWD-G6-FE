@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Verify = () => {
@@ -13,7 +13,7 @@ const Verify = () => {
     axios.post("http://localhost:8800/users/verify", { code })
       .then((res) => {
         if (res.status === 200) {
-          // Đăng nhập người dùng vào hệ thống
+          alert('Register Successful!!');
           navigate("/login");
         } else {
           alert("Error");

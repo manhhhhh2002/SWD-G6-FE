@@ -1,19 +1,20 @@
-import Register from './component/auth/Register';
-import Login from './component/auth/Login';
+import Register from './component/page/auth/Register';
+import Login from './component/page/auth/Login';
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
   Outlet,
 } from "react-router-dom";
-import Header from './component/footer/Header';
-import Home from './component/home/Home';
-import Footer from './component/footer/Footer';
+import Header from './component/common/Header';
+import Home from './component/page/home/Home';
+import Footer from './component/common/Footer';
 import './App.css'
-import Verify from './component/auth/Verify';
+import Verify from './component/page/auth/Verify';
 import SideMenu from './component/admin/SideMenu';
 import DashBoard from './component/admin/SideMenu/pages/DashBoard';
-import PhoneSignUp from './component/auth/PhoneSignUp';
+import PhoneSignUp from './component/page/auth/PhoneSignUp';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Layout = () => {
   return (
@@ -79,6 +80,19 @@ function App() {
       <div className="container">
         <RouterProvider router={router} />
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <ToastContainer />
     </div>
   );
 }

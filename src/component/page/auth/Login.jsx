@@ -3,8 +3,8 @@ import './autho.css'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useUserAuth } from "../context/authContext.js";
-import GoogleButton from "react-google-button";
 import Cookies from 'js-cookie'; // Import thư viện js-cookie
+import { toast } from 'react-toastify';
 
 
 
@@ -24,6 +24,7 @@ const Login = () => {
             .then(res => {
                 if (res.data.Status === 'Success') {
                     console.log(res.data);
+                    toast.success("Login Successfully!")
                     navigate('/')
                 } else {
                     alert(res.data.Error);
@@ -53,6 +54,7 @@ const Login = () => {
             Cookies.set('token', user.accessToken);
             Cookies.set('name', user.displayName);
             navigate("/");
+            
         } catch (error) {
             console.log(error.message);
         }

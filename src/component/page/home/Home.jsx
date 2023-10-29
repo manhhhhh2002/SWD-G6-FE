@@ -2,15 +2,12 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie'; // Import thư viện js-cookie
-import { useUserAuth } from "../context/authContext.js";
 
 const Home = () => {
     const [auth, setAuth] = useState(false);
     const [message, setMessage] = useState('');
     const [name, setName] = useState('');
     axios.defaults.withCredentials = true;
-    const { logOut, user } = useUserAuth();
-
 
     useEffect(() => {
         // Kiểm tra xem token đã được lưu trong cookies hay chưa
