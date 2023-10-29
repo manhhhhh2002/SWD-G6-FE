@@ -10,7 +10,6 @@ root.render(
   <React.StrictMode>
     <UserAuthContextProvider>
       <App />
-      <App />
     </UserAuthContextProvider>
   </React.StrictMode>
 );
