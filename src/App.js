@@ -4,16 +4,22 @@ import {
   createBrowserRouter,
   RouterProvider,
   Route,
+  Routes,
   Outlet,
+  BrowserRouter,
 } from "react-router-dom";
 import Header from './component/footer/Header';
 import Home from './component/home/Home';
+import Home2 from './component/home/Home2';
+import CreateHome2 from './component/home/CreateHome2'
+import UpdateHome2 from './component/home/UpdateHome2'
 import Footer from './component/footer/Footer';
 import './App.css'
 import Verify from './component/auth/Verify';
 import SideMenu from './component/admin/SideMenu';
 import DashBoard from './component/admin/SideMenu/pages/DashBoard';
 import PhoneSignUp from './component/auth/PhoneSignUp';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 const Layout = () => {
   return (
@@ -28,8 +34,8 @@ const Layout = () => {
 const LayoutAdmin = () => {
   return (
     <>
-      <SideMenu/>
-      <Outlet/>
+      <SideMenu />
+      <Outlet />
     </>
   );
 };
@@ -76,9 +82,16 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="app">
-      <div className="container">
+      {/* <div className="container">
         <RouterProvider router={router} />
-      </div>
+      </div> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home2 />}></Route>
+          <Route path='/create' element={<CreateHome2 />}></Route>
+          <Route path='/update/:id' element={<UpdateHome2 />}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
