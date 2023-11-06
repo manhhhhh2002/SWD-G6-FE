@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import './ProjectList.css'; // Import your custom CSS file
 
-function ProjectList() {
-    const [users, setUsers] = useState([]);
+const ProjectList = () => {
+    const [projects, setProjects] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:8800/home')
-            .then(res => setUsers(res.data))
+            .then(res => setProjects(res.data))
             .catch(err => console.log(err));
     }, []);
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete('http://localhost:8800/project/' + id)
-            window.location.reload()
+            await axios.delete(`http://localhost:8800/project/${id}`);
+            setProjects(projects.filter(project => project.project_id !== id));
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
     }
 
     return (
-        <div className="container-project">
-            <h2>All Projects</h2>
-            <Link to="/project/create" className="btn btn-warning">Add</Link>
-            <table id="example" className="table table-striped">
+        <div className="container">
+            <h2 className="my-4">All Projects</h2>
+            <Link to="/project/create" className="btn add-button">Add Project</Link>
+            <table className="custom-table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -36,19 +37,16 @@ function ProjectList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map((user, index) => (
-                        <tr key={index}>
-                            <td>{user.project_id}</td>
-                            <td>{user.project_name}</td>
-                            <td>{user.description}</td>
-                            <td>{user.member}</td>
-                            <td>{user.status}</td>
-
+                    {projects.map((project) => (
+                        <tr key={project.project_id}>
+                            <td>{project.project_id}</td>
+                            <td>{project.project_name}</td>
+                            <td>{project.description}</td>
+                            <td>{project.member}</td>
+                            <td>{project.status}</td>
                             <td>
-                                <button onClick={() => handleDelete(user.project_id)} className="btn btn-danger">Delete</button>
-                            </td>
-                            <td>
-                                <Link style={{ width: "150px" }} to={`/project/edit/${user.project_id}`} className="btn btn-primary">Edit</Link>
+                                <button onClick={() => handleDelete(project.project_id)} className="delete-button">Delete</button>
+                                <Link to={`/project/edit/${project.project_id}`} className="edit-button">Edit</Link>
                             </td>
                         </tr>
                     ))}

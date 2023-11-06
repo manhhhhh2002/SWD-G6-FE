@@ -11,15 +11,13 @@ import Footer from './component/page/commonView/Footer';
 import './App.css'
 import Verify from './component/page/auth/Verify';
 import PhoneSignUp from './component/page/auth/PhoneSignUp';
-import AdditionClass from './component/page/additonClass/AdditionClass';
-import UpdateClass from './component/page/updateClass/Updateclass';
-import ClassList from './component/page/classList/ClassList';
 import Admin from './component/page/admin/Admin';
 import AddNewSetting from './component/page/admin/NewSetting';
 import UpdateSetting from './component/page/admin/EditSetting';
 import ProjectList from './component/page/project/ProjectList';
 import AddProject from './component/page/project/AddProject';
 import EditProject from './component/page/project/UpdateProject';
+import ClassList from './component/page/classList/ClassList';
 
 const Layout = () => {
   return (
@@ -62,18 +60,6 @@ const router = createBrowserRouter([
     element: <Verify />,
   },
   {
-    path: "/addclass",
-    element: <AdditionClass />,
-  },
-  {
-    path: "/editclass",
-    element: <UpdateClass />,
-  },
-  {
-    path: "/classlist",
-    element: <ClassList />,
-  },
-  {
     path: "/admin",
     element: <Admin />,
   },
@@ -97,6 +83,18 @@ const router = createBrowserRouter([
     path: "/project/edit/:id",
     element: <EditProject />,
   },
+  {
+    path: "/class",
+    element: <ClassList />,
+  },
+  // {
+  //   path: "/class/create",
+  //   element: <Addio />,
+  // },
+  // {
+  //   path: "/class/edit/:id",
+  //   element: <EditProject />,
+  // },
 ]);
 
 function App() {

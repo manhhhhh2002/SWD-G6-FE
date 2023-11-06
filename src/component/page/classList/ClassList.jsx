@@ -1,27 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from 'react-router-dom' for navigation
 import './classList.css';
 
 export default function ClassList() {
-  const initialClassData = [
-    {
-      className: 'Class 1',
-      codeclass: 'C1',
-      date: '2023-10-30',
-      member: 25,
-      status: 'Active',
-    },
-    {
-      className: 'Class 2',
-      codeclass: 'C2',
-      date: '2023-11-05',
-      member: 20,
-      status: 'Inactive',
-    },
-    // Thêm dữ liệu cho các lớp học khác tại đây
-  ];
-
-  const [classData, setClassData] = useState(initialClassData);
+  const [classData, setClassData] = useState([]);
   const [sortOption, setSortOption] = useState('name');
+
+  const fetchClassData = async () => {
+    try {
+      const response = await fetch('http://localhost:8888/class');
+      if (response.ok) {
+        const data = await response.json();
+        setClassData(data);
+      }
+    } catch (error) {
+      console.error('Lỗi khi gọi API:', error);
+    }
+  };
+
+  const handleDeleteClass = async (classId) => {
+    try {
+      const response = await fetch(`http://localhost:8888/class/${classId}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        fetchClassData();
+      } else {
+        console.error('Lỗi khi xóa lớp học');
+      }
+    } catch (error) {
+      console.error('Lỗi khi xóa lớp học:', error);
+    }
+  };
 
   const handleSort = (option) => {
     if (option === 'name') {
@@ -35,6 +45,10 @@ export default function ClassList() {
     }
     setSortOption(option);
   };
+
+  useEffect(() => {
+    fetchClassData();
+  }, []);
 
   return (
     <div>
@@ -55,7 +69,8 @@ export default function ClassList() {
             <tr>
               <th>ClassName</th>
               <th>Codeclass</th>
-              <th>Date</th>
+              <th>Start Date</th>
+              <th>End Date</th>
               <th>Member</th>
               <th>Status</th>
               <th>Action</th>
@@ -66,12 +81,15 @@ export default function ClassList() {
               <tr key={index}>
                 <td>{classInfo.className}</td>
                 <td>{classInfo.codeclass}</td>
-                <td>{classInfo.date}</td>
+                <td>{classInfo.startDate}</td>
+                <td>{classInfo.endDate}</td> 
                 <td>{classInfo.member}</td>
                 <td>{classInfo.status}</td>
                 <td>
-                  <button>Edit</button>
-                  <button>Delete</button>
+                  <Link to={`/updateclass/${classInfo.id}`}>
+                    <button>Edit</button>
+                  </Link>
+                  <button onClick={() => handleDeleteClass(classInfo.id)}>Delete</button>
                 </td>
               </tr>
             ))}
