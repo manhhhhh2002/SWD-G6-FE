@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NewSetting } from '../../service/SettingService';
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2';
 
 
 const AddNewSetting = () => {
@@ -16,6 +17,15 @@ const AddNewSetting = () => {
     try {
       await NewSetting(newSettingData); 
       console.log('New setting added successfully');
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'New setting successfully!!',
+        showConfirmButton: false,
+        width: 500,
+        heightAuto: 100,
+        timer: 1500
+    });
       navigate('/admin');
 
       setNewSettingData({
@@ -39,6 +49,7 @@ const AddNewSetting = () => {
             type="text"
             id="setting_id"
             name="setting_id"
+            placeholder='Setting_id'
             value={newSettingData.setting_id}
             onChange={(e) => setNewSettingData({ ...newSettingData, setting_id: e.target.value })}
             style={{width: '100%', marginRight: '30rem'}}
@@ -50,6 +61,7 @@ const AddNewSetting = () => {
             type="text"
             id="setting_name"
             name="setting_name"
+            placeholder='Setting_name'
             value={newSettingData.setting_name}
             onChange={(e) => setNewSettingData({ ...newSettingData, setting_name: e.target.value })}
             style={{width: '100%', marginRight: '30rem'}}
@@ -61,6 +73,7 @@ const AddNewSetting = () => {
             type="text"
             id="setting_type"
             name="setting_type"
+            placeholder='Setting_type'
             value={newSettingData.setting_type}
             onChange={(e) => setNewSettingData({ ...newSettingData, setting_type: e.target.value })}
             style={{width: '100%', marginRight: '30rem'}}

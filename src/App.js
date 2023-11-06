@@ -18,6 +18,8 @@ import ProjectList from './component/page/project/ProjectList';
 import AddProject from './component/page/project/AddProject';
 import EditProject from './component/page/project/UpdateProject';
 import ClassList from './component/page/classList/ClassList';
+import AdditionClass from "./component/page/additonClass/AdditionClass"
+
 
 const Layout = () => {
   return (
@@ -87,14 +89,14 @@ const router = createBrowserRouter([
     path: "/class",
     element: <ClassList />,
   },
-  // {
-  //   path: "/class/create",
-  //   element: <Addio />,
-  // },
-  // {
-  //   path: "/class/edit/:id",
-  //   element: <EditProject />,
-  // },
+  {
+    path: "/class/create",
+    element: <AdditionClass />,
+  },
+  {
+    path: "/class/edit/:id",
+    element: <EditProject />,
+  },
 ]);
 
 function App() {

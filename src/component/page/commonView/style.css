@@ -5,7 +5,30 @@
     align-items: center;
 }
 
+.user-profile {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+  }
+  
+  .navbar-link {
+    display: flex;
+    justify-content: center; /* Căn giữa the nội dung theo chiều ngang */
+  }
+  
+  .link {
+    margin: 0 10px; /* Để tạo khoảng cách giữa các link trong navbar-link */
+  }
 
+  .Logout{
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 10%;
+  }
+  
 
 .link {
     text-decoration: none;

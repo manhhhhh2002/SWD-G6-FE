@@ -34,7 +34,7 @@ export default function AdditionClass() {
 
   return (
     <div>
-      <div className="container">
+      <div className="container-add">
         <h2>Add New Class</h2>
         <div className="form-input">
           <form>

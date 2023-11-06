@@ -47,7 +47,7 @@ const Home = () => {
             {auth ? (
                 <div>
                     <h3>You are authorized {name}</h3>
-                    <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+                    <button className="btn btn-danger Logout" onClick={handleLogout}>Logout</button>
                 </div>
             ) : (
                 <div>

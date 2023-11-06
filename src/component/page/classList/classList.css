@@ -1,5 +1,5 @@
 .container-class {
-    max-width: 70%;
+    max-width: 75%;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ddd;
@@ -41,7 +41,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
   }
-  .container{
+  .container-class{
     display: block;
   }
   

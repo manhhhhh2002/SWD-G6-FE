@@ -26,19 +26,19 @@
     border: none;
 }
 
-.edit-button {
-    background-color: #007bff;
+.editsetting-button {
+    background-color: #0CCBEE;
     color: white;
     border: none;
     padding: 5px 10px;
-    margin-right: 5px;
+    margin-right: 20px;
     cursor: pointer;
     width: 100px;
     height: 40px;
 }
 
 .deactivate-button {
-    background-color: #007bff;
+    background-color: #D73445;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -48,13 +48,13 @@
     height: 40px;
 }
 
-.edit-button:hover,
+.editsetting-button:hover,
 .deactivate-button:hover {
     background-color: #0056b3;
 }
 
 .btnAdd {
-    background-color: #007bff;
+    background-color: #00B73E;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -68,7 +68,7 @@
 }
 
 .addnew {
-    background-color: #007bff;
+    background-color: #00B73E;
     color: white;
     border: none;
     padding: 10px 20px;

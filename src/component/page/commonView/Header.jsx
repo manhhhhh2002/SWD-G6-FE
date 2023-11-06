@@ -18,6 +18,11 @@ const Header = () => {
                 <div className="links">
                     {isLoggedIn ? (
                         <div className="user-profile">
+                            <div className="navbar-link">
+                                <Link className="link" to="/admin">Setting</Link>
+                                <Link className="link" to="/project">Project</Link>
+                                <Link className="link" to="/class">Class</Link>
+                            </div>
                             <img src="https://inkythuatso.com/uploads/thumbnails/800/2021/11/logo-fpt-inkythuatso-1-01-01-14-33-35.jpg" alt="Avatar" />
                             <span>Xin chào {name}</span>
                         </div>

@@ -43,7 +43,7 @@ function Admin() {
               <td>{item.setting_active}</td>
               <td className="editbutton">
                 <Link to={`/admin/edit/${item.setting_id}`}>
-                  <button className="edit-button">Edit</button>
+                  <button className="editsetting-button">Edit</button>
                 </Link>
 
                 <button className="deactivate-button">Deactivate</button>

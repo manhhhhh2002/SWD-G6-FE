@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { EditSetting } from '../../service/SettingService';
 import { useParams ,useNavigate} from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function UpdateSetting() {
     const { id } = useParams();
@@ -36,6 +37,15 @@ function UpdateSetting() {
         try {
             const res = await EditSetting(newSettingData);
             setSetting(res);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Edit setting successfully!!',
+                showConfirmButton: false,
+                width: 500,
+                heightAuto: 100,
+                timer: 1500
+            });
             navigate('/admin');
         } catch (err) {
             console.error(err);

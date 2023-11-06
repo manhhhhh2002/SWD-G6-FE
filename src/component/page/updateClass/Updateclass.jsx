@@ -5,66 +5,27 @@ import './UpdateClass.css';
 
 
 export default function UpdateClass() {
-  const { id } = useParams();
-  const [formData, setFormData] = useState({
-    nameclass: "",
-    codeclass: "",
-    description: "",
-    StartDate: "",
-    EndDate: "",
-  });
+  const [classname, setClassName] = useState('');
+  const [desClass, setDes] = useState('');
+  const [mem, setMem] = useState('');
+  const [status, setStatus] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const { id } = useParams()
+  const navigate = useNavigate();
 
-  const [isUpdated, setIsUpdated] = useState(false);
+  function handleSubmit(event) {
+      event.preventDefault();
+      axios.put('http://localhost:8800/class/' + id, { classname, desClass, mem, status,startDate,endDate })
+          .then(res => {
+              console.log(res);
 
-  const handleUpdateClass = async (e) => {
-    e.preventDefault();
-
-    const requestData = {
-      nameclass: formData.nameclass,
-      codeclass: formData.codeclass,
-      description: formData.description,
-      StartDate: formData.StartDate,
-      EndDate: formData.EndDate,
-    };
-
-    try {
-      const response = await fetch(`/api/class/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestData),
-      });
-
-      if (response.ok) {
-    
-        setIsUpdated(true);
-      }
-    } catch (error) {
-      console.error('Lỗi khi cập nhật lớp học:', error);
-    }
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`/api/class/${id}`);
-        if (response.ok) {
-          const classData = await response.json();
-          setFormData(classData);
-        }
-      } catch (error) {
-        console.error('Lỗi khi lấy thông tin lớp học:', error);
-      }
-    };
-
-    fetchData();
-  }, [id]);
+              navigate("/class");
+          }).catch(err => {
+              console.log(err);
+              toast.error("Đã xảy ra lỗi khi thêm.");
+          });
+  }
 
   return (
     <div>
@@ -73,11 +34,11 @@ export default function UpdateClass() {
         {isUpdated ? (
           <div>
             <p>Class updated successfully!</p>
-            {/* You can add a button to redirect to another page here */}
+            
           </div>
         ) : (
           <div className="form-input">
-            <form>
+            <form onsu>
               <div className="form-group">
                 <label htmlFor="nameclass">Class Name:</label>
                 <input
@@ -88,7 +49,7 @@ export default function UpdateClass() {
                   onChange={handleInputChange}
                 />
               </div>
-              {/* Rest of your form fields */}
+              
               <button type="submit" onClick={handleUpdateClass}>
                 Update class
               </button>
@@ -96,7 +57,7 @@ export default function UpdateClass() {
           </div>
         )}
       </div>
-      <Link to="/classList">Go to Class List</Link>
+      <Link to="/class"><button>Go to Class List</button></Link>
     </div>
   );
 }
