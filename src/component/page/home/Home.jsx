@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie'; // Import thư viện js-cookie
+import Swal from 'sweetalert2';
 
 const Home = () => {
     const [auth, setAuth] = useState(false);
@@ -22,13 +23,22 @@ const Home = () => {
             setMessage("You are not logged in.");
         }
     }, []);
-    
+
 
     const handleLogout = () => {
         // Xóa token và tên người dùng khỏi cookies khi đăng xuất
         Cookies.remove('token');
         Cookies.remove('name');
         window.location.reload(true);
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Logout successfully!!',
+            showConfirmButton: false,
+            width: 500,
+            heightAuto: 100,
+            timer: 1500
+        })
         setAuth(false);
     }
 

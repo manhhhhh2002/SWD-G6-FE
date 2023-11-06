@@ -1,50 +1,65 @@
 import React, { useState } from "react";
 import './autho.css'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import { useUserAuth } from "../context/authContext.js";
-import Cookies from 'js-cookie'; // Import thư viện js-cookie
-import { toast } from 'react-toastify';
-
-
+import { useUserAuth } from "../../commonService/authContext";
+import Cookies from 'js-cookie';
+import Swal from 'sweetalert2';
+import { loginUser } from '../../service/AuthService.js'; 
 
 const Login = () => {
     const navigate = useNavigate();
-    axios.defaults.withCredentials = true;
+
     const { googleSignIn, facebookSignIn } = useUserAuth();
 
     const [values, setValues] = useState({
         email: '',
         password: ''
-    })
+    });
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8800/users/login', values)
-            .then(res => {
-                if (res.data.Status === 'Success') {
-                    console.log(res.data);
-                    toast.success("Login Successfully!")
-                    navigate('/')
+        loginUser(values)
+            .then(data => {
+                if (data.Status === 'Success') {
+                    console.log(data);
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Login successfully!!',
+                        showConfirmButton: false,
+                        width: 500,
+                        heightAuto: 100,
+                        timer: 1500
+                    });
+                    navigate('/');
                 } else {
-                    alert(res.data.Error);
+                    alert(data.Error);
                 }
             })
-            .then(err => console.log(err));
+            .catch(err => console.log(err));
     }
 
     const handleFacebookSignIn = async (e) => {
         e.preventDefault();
         try {
-          const userCredential = await facebookSignIn();
-          const user = userCredential.user;
-          Cookies.set('token', user.accessToken);
-          Cookies.set('name', user.displayName);
-          navigate("/");
+            const userCredential = await facebookSignIn();
+            const user = userCredential.user;
+            Cookies.set('token', user.accessToken);
+            Cookies.set('name', user.displayName);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Login successfully!!',
+                showConfirmButton: false,
+                width: 500,
+                heightAuto: 100,
+                timer: 1500
+            })
+            navigate("/");
         } catch (error) {
-          console.log(error.message);
+            console.log(error.message);
         }
-      };
+    };
 
     const handleGoogleSignIn = async (e) => {
         e.preventDefault();
@@ -53,8 +68,17 @@ const Login = () => {
             const user = userCredential.user;
             Cookies.set('token', user.accessToken);
             Cookies.set('name', user.displayName);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Login successfully!!',
+                showConfirmButton: false,
+                width: 500,
+                heightAuto: 100,
+                timer: 1500
+            })
             navigate("/");
-            
+
         } catch (error) {
             console.log(error.message);
         }

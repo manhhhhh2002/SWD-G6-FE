@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 const Header = () => {
     const token = Cookies.get('token');
     const name = Cookies.get('name');
-    const isLoggedIn = !!token; 
+    const isLoggedIn = !!token;
 
     return (
         <div className="header">
@@ -17,7 +17,11 @@ const Header = () => {
 
                 <div className="links">
                     {isLoggedIn ? (
-                        <span>Xin chào {name}</span>
+                        <div className="user-profile">
+                            <img src="https://inkythuatso.com/uploads/thumbnails/800/2021/11/logo-fpt-inkythuatso-1-01-01-14-33-35.jpg" alt="Avatar" />
+                            <span>Xin chào {name}</span>
+                        </div>
+
                     ) : (
                         <>
                             <Link className="link" to="/register">Register</Link>

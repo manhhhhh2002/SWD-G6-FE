@@ -5,16 +5,21 @@ import {
   RouterProvider,
   Outlet,
 } from "react-router-dom";
-import Header from './component/common/Header';
+import Header from './component/page/commonView/Header';
 import Home from './component/page/home/Home';
-import Footer from './component/common/Footer';
+import Footer from './component/page/commonView/Footer';
 import './App.css'
 import Verify from './component/page/auth/Verify';
-import SideMenu from './component/admin/SideMenu';
-import DashBoard from './component/admin/SideMenu/pages/DashBoard';
 import PhoneSignUp from './component/page/auth/PhoneSignUp';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import AdditionClass from './component/page/additonClass/AdditionClass';
+import UpdateClass from './component/page/updateClass/Updateclass';
+import ClassList from './component/page/classList/ClassList';
+import Admin from './component/page/admin/Admin';
+import AddNewSetting from './component/page/admin/NewSetting';
+import UpdateSetting from './component/page/admin/EditSetting';
+import ProjectList from './component/page/project/ProjectList';
+import AddProject from './component/page/project/AddProject';
+import EditProject from './component/page/project/UpdateProject';
 
 const Layout = () => {
   return (
@@ -26,14 +31,8 @@ const Layout = () => {
   );
 };
 
-const LayoutAdmin = () => {
-  return (
-    <>
-      <SideMenu/>
-      <Outlet/>
-    </>
-  );
-};
+
+
 
 const router = createBrowserRouter([
   {
@@ -63,14 +62,40 @@ const router = createBrowserRouter([
     element: <Verify />,
   },
   {
+    path: "/addclass",
+    element: <AdditionClass />,
+  },
+  {
+    path: "/editclass",
+    element: <UpdateClass />,
+  },
+  {
+    path: "/classlist",
+    element: <ClassList />,
+  },
+  {
     path: "/admin",
-    element: <LayoutAdmin />,
-    children: [
-      {
-        path: "/admin/db",
-        element: <DashBoard />,
-      },
-    ],
+    element: <Admin />,
+  },
+  {
+    path: "/admin/create",
+    element: <AddNewSetting />,
+  },
+  {
+    path: "/admin/edit/:id",
+    element: <UpdateSetting />,
+  },
+  {
+    path: "/project",
+    element: <ProjectList />,
+  },
+  {
+    path: "/project/create",
+    element: <AddProject />,
+  },
+  {
+    path: "/project/edit/:id",
+    element: <EditProject />,
   },
 ]);
 
@@ -80,19 +105,6 @@ function App() {
       <div className="container">
         <RouterProvider router={router} />
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      <ToastContainer />
     </div>
   );
 }

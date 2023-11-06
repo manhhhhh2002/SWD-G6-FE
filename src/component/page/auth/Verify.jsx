@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import {useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
+import { verifyCode } from '../../service/AuthService.js'; // Import the service
 
 const Verify = () => {
   const [code, setCode] = useState("");
@@ -9,17 +10,24 @@ const Verify = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Xác nhận mã verify
-    axios.post("http://localhost:8800/users/verify", { code })
-      .then((res) => {
-        if (res.status === 200) {
-          alert('Register Successful!!');
+    verifyCode(code)
+      .then((status) => {
+        if (status === 200) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Register successfully!!',
+            showConfirmButton: false,
+            width: 500,
+            heightAuto: 100,
+            timer: 1500
+          })
           navigate("/login");
         } else {
           alert("Error");
         }
       })
-      .then((err) => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   return (

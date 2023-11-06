@@ -10,7 +10,7 @@ import {
   signInWithPhoneNumber,
   FacebookAuthProvider,
 } from "firebase/auth";
-import { auth, provider } from "../../filebase";
+import { auth } from "../../filebase";
 
 const userAuthContext = createContext();
 
